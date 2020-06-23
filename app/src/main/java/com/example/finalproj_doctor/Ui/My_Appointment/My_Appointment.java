@@ -1,4 +1,4 @@
-package com.example.finalproj_doctor.Ui;
+package com.example.finalproj_doctor.Ui.My_Appointment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
