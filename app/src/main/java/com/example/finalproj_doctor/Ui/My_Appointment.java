@@ -1,14 +1,16 @@
-package com.example.finalproj_doctor;
+package com.example.finalproj_doctor.Ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.finalproj_doctor.R;
+
+public class My_Appointment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_my__appointment);
     }
 }
