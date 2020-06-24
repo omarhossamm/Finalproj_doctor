@@ -2,6 +2,7 @@ package com.example.finalproj_doctor.Network;
 
 import com.example.finalproj_doctor.Model.Login;
 import com.example.finalproj_doctor.Model.Pojo.Doctor_pojo;
+import com.example.finalproj_doctor.Model.Pojo.Schedule_response;
 import com.example.finalproj_doctor.Model.Response_signup;
 import com.example.finalproj_doctor.Model.Schedule;
 import com.example.finalproj_doctor.Model.Sign_up;
@@ -11,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RetrofitApi {
 
@@ -25,6 +27,9 @@ public interface RetrofitApi {
 
     @POST("api/v1/doctors/auth/login")
     Call<Response_signup> Login(@Body Login login);
+
+    @GET("api/v1/doctors/{id}/schedules")
+    Call<Schedule_response> Getdoctor_Schedule(@Path("id") String doctor_id);
 
 
 }

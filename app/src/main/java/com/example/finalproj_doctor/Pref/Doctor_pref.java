@@ -43,8 +43,7 @@ public class Doctor_pref {
         String data =preferences.getString("Data" , "");
         Doctor doctor = gson.fromJson(data , Doctor.class);
         return doctor;
-
-    }
+}
 
 
 }

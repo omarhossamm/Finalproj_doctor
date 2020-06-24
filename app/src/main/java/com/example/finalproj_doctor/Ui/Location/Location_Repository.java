@@ -53,7 +53,7 @@ public class Location_Repository {
             public void onResponse(Call<Doctor_pojo> call, Response<Doctor_pojo> response) {
 
                 doctor_pref = new Doctor_pref(context , "Data");
-                doctor_pref.setData(response.body().getDoctor());
+                doctor_pref.setData(response.body().getData());
 
             }
 

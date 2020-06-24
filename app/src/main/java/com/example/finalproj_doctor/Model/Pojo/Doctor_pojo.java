@@ -5,7 +5,7 @@ import com.example.finalproj_doctor.Model.Doctor;
 public class Doctor_pojo {
 
     private Boolean success;
-    private Doctor doctor;
+    private Doctor data;
 
     public Boolean getSuccess() {
         return success;
@@ -15,11 +15,11 @@ public class Doctor_pojo {
         this.success = success;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Doctor getData() {
+        return data;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setData(Doctor data) {
+        this.data = data;
     }
 }

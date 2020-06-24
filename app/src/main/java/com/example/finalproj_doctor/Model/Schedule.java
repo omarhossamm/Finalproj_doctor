@@ -1,11 +1,14 @@
 package com.example.finalproj_doctor.Model;
 
+import java.util.List;
+
 public class Schedule {
 
     private String bookSystem, day;
     private int currentNumber, totalNumber;
     private long startedAt, endedAt;
     private double sessionCost;
+    private Object _id;
 
     public Schedule(String bookSystem, String day, int currentNumber, int totalNumber, long startedAt, long endedAt, double sessionCost) {
         this.bookSystem = bookSystem;
@@ -71,5 +74,13 @@ public class Schedule {
 
     public void setSessionCost(double sessionCost) {
         this.sessionCost = sessionCost;
+    }
+
+    public Object get_id() {
+        return _id;
+    }
+
+    public void set_id(Object _id) {
+        this._id = _id;
     }
 }

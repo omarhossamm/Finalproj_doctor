@@ -30,7 +30,7 @@ public class Login_Repository {
 
                     doctor_pref = new Doctor_pref(context , "Data");
                     doctor_pref.set_Token(response.body().gettoken());
-                    get_loggedin(context , doctor_pref.get_Token());
+                    get_loggedin(context , response.body().gettoken());
 
                 }else {
                     responsee.setValue("تاكد من صحة البيانات");
@@ -52,7 +52,7 @@ public class Login_Repository {
                 if (response.isSuccessful()){
                     getloggedin.setValue("true");
                     doctor_pref = new Doctor_pref(context , "Data");
-                    doctor_pref.setData(response.body().getDoctor());
+                    doctor_pref.setData(response.body().getData());
                 }else {
                     getloggedin.setValue("false");
                 }

@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ui.My_Appointment"></activity>
+        <activity android:name=".Ui.My_Appointment.My_Appointment"></activity>
         <activity android:name=".Ui.Location.Location" />
         <activity android:name=".Ui.Sign_up.Sign_up" />
         <activity android:name=".Ui.Put_Appointment.Put_Appointment" />

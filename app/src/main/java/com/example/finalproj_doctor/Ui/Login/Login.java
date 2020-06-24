@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.finalproj_doctor.Model.Doctor;
 import com.example.finalproj_doctor.Pref.Doctor_pref;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.My_Appointment.My_Appointment;
 import com.example.finalproj_doctor.Ui.Put_Appointment.Put_Appointment;
 
 public class Login extends AppCompatActivity {
@@ -45,9 +47,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 if (s.equals("true")) {
-                    startActivity(new Intent(Login.this, Put_Appointment.class));
-
-                }else {}
+                    startActivity(new Intent(Login.this, My_Appointment.class));
+            }else {}
             }
         });
 
@@ -55,7 +56,9 @@ public class Login extends AppCompatActivity {
         login_viewmodel.getresponse().observe(Login.this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Toast.makeText(Login.this , s , Toast.LENGTH_LONG).show();
+                if (s.equals("تم تسجيل الدخول بنجاح")){
+                    startActivity(new Intent(Login.this , My_Appointment.class));
+                }else Toast.makeText(getApplicationContext() , "برجاء التاكد من صحة البيانات" , Toast.LENGTH_LONG).show();
             }
         });
 
