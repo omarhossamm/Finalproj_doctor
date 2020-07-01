@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.example.finalproj_doctor.Model.Doctor;
 import com.example.finalproj_doctor.Pref.Doctor_pref;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
 import com.example.finalproj_doctor.Ui.My_Appointment.My_Appointment;
 import com.example.finalproj_doctor.Ui.Put_Appointment.Put_Appointment;
+import com.example.finalproj_doctor.Ui.Sign_up.Sign_up;
 
 public class Login extends AppCompatActivity {
 
@@ -47,7 +49,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 if (s.equals("true")) {
-                    startActivity(new Intent(Login.this, My_Appointment.class));
+                    startActivity(new Intent(Login.this, Sign_up.class));
             }else {}
             }
         });
@@ -57,7 +59,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 if (s.equals("تم تسجيل الدخول بنجاح")){
-                    startActivity(new Intent(Login.this , My_Appointment.class));
+                    startActivity(new Intent(Login.this , Sign_up.class));
                 }else Toast.makeText(getApplicationContext() , "برجاء التاكد من صحة البيانات" , Toast.LENGTH_LONG).show();
             }
         });

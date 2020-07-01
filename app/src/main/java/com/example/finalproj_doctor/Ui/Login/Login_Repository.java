@@ -53,6 +53,7 @@ public class Login_Repository {
                     getloggedin.setValue("true");
                     doctor_pref = new Doctor_pref(context , "Data");
                     doctor_pref.setData(response.body().getData());
+                    doctor_pref.setProfile(response.body().getData().getPhoto());
                 }else {
                     getloggedin.setValue("false");
                 }

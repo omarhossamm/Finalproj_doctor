@@ -32,15 +32,27 @@ public class Doctor_pref {
         Gson gson = new Gson();
         String data = gson.toJson(doctor);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("Data" , data);
+        editor.putString("doctor" , data);
         editor.apply();
 
     }
 
-    public Doctor getData(){
+    public void setProfile(String image){
 
+        SharedPreferences.Editor pref = preferences.edit();
+        pref.putString("profile" , image);
+        pref.apply();
+
+    }
+
+    public String get_Image(){
+        String image = preferences.getString("image" , "");
+        return image;
+    }
+
+    public Doctor getData(){
         Gson gson = new Gson();
-        String data =preferences.getString("Data" , "");
+        String data =preferences.getString("doctor" , "");
         Doctor doctor = gson.fromJson(data , Doctor.class);
         return doctor;
 }

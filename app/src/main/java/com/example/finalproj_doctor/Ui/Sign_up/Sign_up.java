@@ -18,8 +18,7 @@ import android.widget.Toast;
 
 import com.example.finalproj_doctor.R;
 import com.example.finalproj_doctor.Ui.Location.Location;
-
-import java.util.ArrayList;
+import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
 import java.util.Calendar;
 
 public class Sign_up extends AppCompatActivity {
@@ -38,7 +37,7 @@ public class Sign_up extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+startActivity(new Intent(getApplicationContext() , Doctor_profile.class));
         careers_spinner = findViewById(R.id.careers);
 
         BD = findViewById(R.id.birthday);

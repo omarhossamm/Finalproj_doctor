@@ -9,6 +9,7 @@ public class Doctor {
     private Location location;
     private ArrayList<String> speciality;
     private String photo , homeConsultation , accountStatus , _id , address , description , email , name , phone , slug;
+    private int averageRating;
 
     public Location getLocation() {
         return location;
@@ -105,4 +106,14 @@ public class Doctor {
     public void setSlug(String slug) {
         this.slug = slug;
     }
+
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
+    }
+
+
 }

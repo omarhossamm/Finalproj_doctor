@@ -2,6 +2,8 @@ package com.example.finalproj_doctor.Model.Pojo;
 
 import com.example.finalproj_doctor.Model.Doctor;
 
+import java.util.List;
+
 public class Doctor_pojo {
 
     private Boolean success;

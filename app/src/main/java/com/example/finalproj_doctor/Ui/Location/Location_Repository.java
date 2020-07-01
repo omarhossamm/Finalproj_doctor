@@ -54,6 +54,7 @@ public class Location_Repository {
 
                 doctor_pref = new Doctor_pref(context , "Data");
                 doctor_pref.setData(response.body().getData());
+                doctor_pref.setProfile(response.body().getData().getPhoto());
 
             }
 
