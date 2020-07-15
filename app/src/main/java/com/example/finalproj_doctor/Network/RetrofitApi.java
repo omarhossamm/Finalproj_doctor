@@ -3,6 +3,7 @@ package com.example.finalproj_doctor.Network;
 import com.example.finalproj_doctor.Model.Login;
 import com.example.finalproj_doctor.Model.Pojo.Doctor_pojo;
 import com.example.finalproj_doctor.Model.Pojo.Review_pojo;
+import com.example.finalproj_doctor.Model.Pojo.Scanqr_Pojo;
 import com.example.finalproj_doctor.Model.Pojo.Schedule_response;
 import com.example.finalproj_doctor.Model.Pojo.UserAppointment_pojo;
 import com.example.finalproj_doctor.Model.Response_signup;
@@ -54,5 +55,8 @@ public interface RetrofitApi {
 
     @GET("api/v1/doctors/{id}/reviews")
     Call<Review_pojo> getreviews(@Path("id") String id);
+
+    @PUT("api/v1/doctors/appointments/:appointmentId/qr")
+    Call<Scanqr_Pojo> Scan_qr(String appointmentid ,@Header("Authorization:Bearer") String token);
 
 }

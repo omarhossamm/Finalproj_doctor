@@ -37,7 +37,7 @@ public class Sign_up extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-startActivity(new Intent(getApplicationContext() , Doctor_profile.class));
+//startActivity(new Intent(getApplicationContext() , Doctor_profile.class));
         careers_spinner = findViewById(R.id.careers);
 
         BD = findViewById(R.id.birthday);

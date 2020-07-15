@@ -39,7 +39,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:text="omar hossam"
-                    android:textColor="@android:color/holo_orange_dark"
+                    android:textColor="#6415ff"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
-                    android:background="#f9d7db" />
+                    android:background="#6415ff" />
 
 
                 <LinearLayout

@@ -9,22 +9,21 @@
     >
 
     <LinearLayout
-        android:background="#C542DB"
+        android:background="#6415ff"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:text="Dory"
             android:textColor="#fff"
             android:textSize="100sp"
             android:textStyle="bold"
 
-            />
+            app:srcCompat="@drawable/logo_l" />
 
     </LinearLayout>
 
@@ -43,8 +42,8 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="68dp"
-                android:layout_height="37dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="التاريخ"
                 android:textColor="#000"
                 android:textSize="24sp"
@@ -63,9 +62,11 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/date_work"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:ems="5"
                     android:focusable="false"
                     android:gravity="end"
@@ -142,9 +143,11 @@
                 app:layout_constraintVertical_bias="0.284" />
 
             <EditText
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/time_start"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:ems="10"
                 android:focusable="false"
                 android:gravity="end"
@@ -177,9 +180,10 @@
 
             <EditText
                 android:id="@+id/time_end"
-
-                android:layout_width="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:ems="10"
                 android:focusable="false"
                 android:gravity="end"
@@ -210,9 +214,11 @@
                 app:layout_constraintVertical_bias="0.701" />
 
             <EditText
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/cost"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:ems="10"
                 android:gravity="end"
                 android:inputType="number"
@@ -233,7 +239,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
                 android:width="300dp"
-                android:background="#9C27B0"
+                android:background="#6415ff"
                 android:text="تاكيد "
                 android:textColor="#fff"
                 android:textSize="24sp"
