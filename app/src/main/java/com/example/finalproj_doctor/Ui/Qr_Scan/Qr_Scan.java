@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class Qr_Scan extends AppCompatActivity {
 
     Button qrscan_Button;
     public static TextView code;
+    public static LinearLayout linearLayout;
+    public static TextView name , number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +33,21 @@ public class Qr_Scan extends AppCompatActivity {
         Permission();
         qrscan_Button = findViewById(R.id.Qrscan_Button);
         code = findViewById(R.id.code);
+        linearLayout = findViewById(R.id.linear);
+        name = findViewById(R.id.name);
+        number = findViewById(R.id.number);
 
         qrscan_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(Qr_Scan.this , Scan.class));
+                Intent intent1 = getIntent();
+                String appointment_id = intent1.getStringExtra("appointment_id");
+
+                Intent intent = new Intent(Qr_Scan.this , Scan.class);
+                intent.putExtra("appointment_id" , appointment_id);
+                startActivity(intent);
+
 
             }
         });

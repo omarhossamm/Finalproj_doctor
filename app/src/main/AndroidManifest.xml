@@ -19,14 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Ui.Scan.Scan"></activity>
-        <activity android:name=".Ui.Login.Login" />
-        <activity android:name=".Ui.Doctor_profile.Doctor_profile" />
         <activity android:name=".Ui.Put_Appointment.Put_Appointment" />
         <activity android:name=".Ui.Location.Location" />
         <activity android:name=".Ui.My_Appointment.My_Appointment" />
         <activity android:name=".Ui.Sign_up.Sign_up" />
+        <activity android:name=".Ui.Qr_Scan.Qr_Scan" />
+        <activity android:name=".Ui.Login.Login"/>
         <activity android:name=".Ui.Users_appointment.Users_appointment"/>
-            <activity android:name=".Ui.Qr_Scan.Qr_Scan" >
+        <activity android:name=".Ui.Doctor_profile.Doctor_profile" >
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

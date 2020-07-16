@@ -9,7 +9,7 @@ import java.util.List;
 public class Scanqr_Pojo {
 
     private boolean success;
-    private UsersAppointment_model usersAppointment_model;
+    private UsersAppointment_model appointment;
     private Doctor doctor;
     private Schedule schedule;
 
@@ -21,12 +21,12 @@ public class Scanqr_Pojo {
         this.success = success;
     }
 
-    public UsersAppointment_model getUsersAppointment_model() {
-        return usersAppointment_model;
+    public UsersAppointment_model getAppointment() {
+        return appointment;
     }
 
-    public void setUsersAppointment_model(UsersAppointment_model usersAppointment_model) {
-        this.usersAppointment_model = usersAppointment_model;
+    public void setAppointment(UsersAppointment_model appointment) {
+        this.appointment = appointment;
     }
 
     public Doctor getDoctor() {

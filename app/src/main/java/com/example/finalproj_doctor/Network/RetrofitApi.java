@@ -56,7 +56,7 @@ public interface RetrofitApi {
     @GET("api/v1/doctors/{id}/reviews")
     Call<Review_pojo> getreviews(@Path("id") String id);
 
-    @PUT("api/v1/doctors/appointments/:appointmentId/qr")
-    Call<Scanqr_Pojo> Scan_qr(String appointmentid ,@Header("Authorization:Bearer") String token);
+    @PUT("api/v1/doctors/appointments/{appointment_id}/qr")
+    Call<Scanqr_Pojo> Scan_qr(@Path("appointment_id") String appointment_id ,@Header("Authorization:Bearer") String token);
 
 }

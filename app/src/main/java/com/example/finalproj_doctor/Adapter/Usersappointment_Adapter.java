@@ -1,11 +1,13 @@
 package com.example.finalproj_doctor.Adapter;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproj_doctor.Model.UsersAppointment_model;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Qr_Scan.Qr_Scan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +36,28 @@ public class Usersappointment_Adapter extends RecyclerView.Adapter<Usersappointm
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holderr holder, int position) {
+    public void onBindViewHolder(@NonNull holderr holder, final int position) {
 
         holder.tracking_number.setText("رقم : " + arrayList.get(position).getPatientNumber());
         holder.age.setText(arrayList.get(position).getAge() + " سنة");
         holder.name.setText(arrayList.get(position).getPatientName());
         holder.phone.setText(arrayList.get(position).getPhone() + "");
 
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext() , Qr_Scan.class);
+                intent.putExtra("appointment_id" , arrayList.get(position).get_id().toString());
+                view.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     public static class holderr extends RecyclerView.ViewHolder {
 
         TextView name , phone , age , tracking_number;
+        LinearLayout linearLayout;
 
         public holderr(View itemView) {
             super(itemView);
@@ -53,6 +66,7 @@ public class Usersappointment_Adapter extends RecyclerView.Adapter<Usersappointm
             phone = itemView.findViewById(R.id.phone);
             age = itemView.findViewById(R.id.age);
             tracking_number = itemView.findViewById(R.id.tracking_number);
+            linearLayout = itemView.findViewById(R.id.linear);
 
         }
     }
