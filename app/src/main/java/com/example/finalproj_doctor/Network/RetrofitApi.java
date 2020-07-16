@@ -9,6 +9,7 @@ import com.example.finalproj_doctor.Model.Pojo.UserAppointment_pojo;
 import com.example.finalproj_doctor.Model.Response_signup;
 import com.example.finalproj_doctor.Model.Schedule;
 import com.example.finalproj_doctor.Model.Sign_up;
+import com.example.finalproj_doctor.Model.Update_doc;
 import com.example.finalproj_doctor.Model.Upload_response;
 
 import java.util.Calendar;
@@ -58,5 +59,8 @@ public interface RetrofitApi {
 
     @PUT("api/v1/doctors/appointments/{appointment_id}/qr")
     Call<Scanqr_Pojo> Scan_qr(@Path("appointment_id") String appointment_id ,@Header("Authorization:Bearer") String token);
+
+    @PUT("api/v1/doctors/{id}")
+    Call<Doctor_pojo> Update_dr(@Path("id") String id , @Header("Authorization:Bearer") String token , @Body Update_doc update_doc);
 
 }

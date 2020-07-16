@@ -34,6 +34,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,9 @@ import com.example.finalproj_doctor.Model.Upload_response;
 import com.example.finalproj_doctor.Network.Client;
 import com.example.finalproj_doctor.Network.RetrofitApi;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Location_update.Location_update;
+import com.example.finalproj_doctor.Ui.Personal_information.Personal_information;
+import com.example.finalproj_doctor.Ui.Review_doc.Review_doc;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -77,6 +82,7 @@ public class Doctor_profile extends AppCompatActivity {
     RatingBar doc_rating;
     CircleImageView doc_pic;
     Doctor_pref doctor_pref;
+    LinearLayout personal_information , location_linear , review_linear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +90,9 @@ public class Doctor_profile extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_profile);
 
         doc_pic = findViewById(R.id.doctor_pic);
+        personal_information = findViewById(R.id.personal_information_linear);
+        location_linear = findViewById(R.id.location_linear);
+        review_linear = findViewById(R.id.reviews_linear);
 
         doctor_pref = new Doctor_pref(context = Doctor_profile.this , "Data");
 
@@ -97,6 +106,26 @@ public class Doctor_profile extends AppCompatActivity {
             }
         });
 
+        personal_information.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Doctor_profile.this , Personal_information.class));
+            }
+        });
+
+        location_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Doctor_profile.this , Location_update.class));
+            }
+        });
+
+        review_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Doctor_profile.this , Review_doc.class));
+            }
+        });
 
         doc_name = findViewById(R.id.name_doctor);
         doc_spec = findViewById(R.id.doctor_spec);

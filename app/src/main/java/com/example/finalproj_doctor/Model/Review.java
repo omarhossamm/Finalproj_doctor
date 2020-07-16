@@ -3,8 +3,16 @@ package com.example.finalproj_doctor.Model;
 public class Review {
 
     private Object _id , doctor , user;
-    private String username , title;
+    private String username , title , text;
     private int rating;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public Object get_id() {
         return _id;

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.finalproj_doctor.Model.Sign_up;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -75,6 +76,9 @@ public class Location extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(Location.this , s , Toast.LENGTH_LONG).show();
+                if (s.equals("تم التسجيل بنجاح")){
+                    startActivity(new Intent(Location.this , Doctor_profile.class));
+                }
             }
         });
 

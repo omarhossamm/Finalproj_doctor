@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="omar hossam"
                 android:textColor="@android:color/black"
                 android:textSize="25dp"
                 android:textStyle="bold|italic|normal" />
@@ -46,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="nose"
                 android:textSize="18dp" />
 
 
@@ -65,7 +63,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:text="(134 review)"
                 android:textSize="20dp" />
 
             <Button
