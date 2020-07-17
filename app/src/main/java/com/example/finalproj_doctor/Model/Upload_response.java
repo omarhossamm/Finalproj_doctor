@@ -2,7 +2,7 @@ package com.example.finalproj_doctor.Model;
 
 public class Upload_response {
     private boolean success;
-   // private String data;
+    private String data;
 
     public boolean isSuccess() {
         return success;
@@ -11,7 +11,7 @@ public class Upload_response {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-/*
+
     public String getData() {
         return data;
     }
@@ -20,5 +20,5 @@ public class Upload_response {
         this.data = data;
 
    }
-*/
+
 }

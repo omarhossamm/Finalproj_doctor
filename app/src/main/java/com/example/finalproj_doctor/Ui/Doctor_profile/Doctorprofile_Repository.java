@@ -56,6 +56,7 @@ public class Doctorprofile_Repository {
 
                 if (response.isSuccessful()){
                     responsee.setValue("تم تغيير الصورة بنجاح");
+                    doctor_pref.setProfile(response.body().getData());
                 }else {
                     responsee.setValue("حدث خطأ");
                 }

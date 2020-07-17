@@ -1,4 +1,4 @@
-package com.example.finalproj_doctor.Ui.Put_Appointment;
+package com.example.finalproj_doctor.Ui.Schedule_update;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,39 +23,40 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.finalproj_doctor.Model.Schedule;
-import com.example.finalproj_doctor.Pref.Doctor_pref;
 import com.example.finalproj_doctor.R;
-import com.example.finalproj_doctor.Ui.Location.Location;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-public class Put_Appointment extends AppCompatActivity {
-
+public class Schedule_update extends AppCompatActivity {
     EditText date , time_start , cost  , time_end;
     Spinner system_work;
     TextView day;
+    Button confirmation;
+    Schedule schedule1;
+    Calendar calendar;
+    DatePickerDialog.OnDateSetListener onDateSetListener;
     int hour , minutes;
     String day_arab;
-    Button confirmation;
-    DatePickerDialog.OnDateSetListener onDateSetListener;
     int yearr , monthh , dayy;
-    Calendar calendar;
-    Putappointment_Viewmodel putappointment_viewmodel;
-    Doctor_pref doctor_pref;
+    Sceduleupdate_Viewmodel sceduleupdate_viewmodel;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_put__appointment);
 
-        doctor_pref = new Doctor_pref(context = Put_Appointment.this , "Data");
-
-        putappointment_viewmodel = new Putappointment_Viewmodel();
-        putappointment_viewmodel = ViewModelProviders.of(Put_Appointment.this).get(Putappointment_Viewmodel.class);
+        sceduleupdate_viewmodel = new Sceduleupdate_Viewmodel();
+        sceduleupdate_viewmodel = ViewModelProviders.of(Schedule_update.this).get(Sceduleupdate_Viewmodel.class);
+        Intent intent = getIntent();
+        String schedule = intent.getStringExtra("schedule");
+        Gson gson = new Gson();
+        schedule1 = gson.fromJson(schedule , Schedule.class);
 
         date = findViewById(R.id.date_work);
         time_start = findViewById(R.id.time_start);
@@ -66,64 +68,77 @@ public class Put_Appointment extends AppCompatActivity {
         day = findViewById(R.id.day_txt_confirming);
 
 
-        putappointment_viewmodel.get_response().observe(Put_Appointment.this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                Toast.makeText(getApplicationContext() , s , Toast.LENGTH_LONG).show();
-            }
-        });
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd");
+        final SimpleDateFormat formatter1 = new SimpleDateFormat("hh:mm");
 
-        Date_Picker();
+
+        final Calendar startat = Calendar.getInstance();
+        Calendar endat = Calendar.getInstance();
+        startat.setTimeInMillis(schedule1.getStartedAt());
+        endat.setTimeInMillis(schedule1.getEndedAt());
+        final String start = formatter.format(startat.getTime());
+        String end = formatter1.format(endat.getTime());
+
+
+        day.setText(schedule1.getDay());
+        date.setText(start);
+        time_start.setText(formatter1.format(startat.getTime()));
+        time_end.setText(end);
+        cost.setText("" + schedule1.getSessionCost());
+        addItemsOnSpinner();
         Start_Time();
         End_Time();
-        Spinner_System();
+        Date_Picker();
 
 
-
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd HH:mm");
-        SimpleDateFormat formatter1 = new SimpleDateFormat("hh:mm aa");
-
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(Long.parseLong("1592733600000"));
-        String x = formatter.format(calendar.getTime());
-        String y = formatter1.format(calendar.getTime());
-
-        //Toast.makeText(getApplicationContext() , " " + y , Toast.LENGTH_LONG).show();
-
-
+        sceduleupdate_viewmodel.getresponse().observe(Schedule_update.this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(Schedule_update.this , s , Toast.LENGTH_LONG).show();
+            }
+        });
 
         confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (date.length() == 0 || time_start.length() == 0 || time_end.length() == 0
-                || cost.length() == 0) {
-                    Toast.makeText(Put_Appointment.this, "برجاء كتابة كافة البيانات", Toast.LENGTH_LONG).show();
-                }else {
-                    long millis_start = 0, millis_end = 0;
-                    try {
-                        String start = date.getText().toString() + " " + time_start.getText().toString();
-                        String end = date.getText().toString() + " " + time_end.getText().toString();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd HH:mm");
-                        Date startt = sdf.parse(start);
-                        Date endd = sdf.parse(end);
-                        millis_start = startt.getTime();
-                        millis_end = endd.getTime();
+            public void onClick(View view) {
 
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    Schedule schedule = new Schedule(system_work.getSelectedItem().toString(), day.getText().toString(),
-                    0, 0, millis_start, millis_end, Double.parseDouble(cost.getText().toString()));
-                    putappointment_viewmodel.Post_Schedule(doctor_pref.get_Token(), schedule);
+                long millis_start = 0, millis_end = 0;
+                try {
+                    String start = date.getText().toString() + " " + time_start.getText().toString();
+                    String end = date.getText().toString() + " " + time_end.getText().toString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd HH:mm");
+                    Date startt = sdf.parse(start);
+                    Date endd = sdf.parse(end);
+                    millis_start = startt.getTime();
+                    millis_end = endd.getTime();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
+
+                com.example.finalproj_doctor.Model.Schedule_update schedule = new com.example.finalproj_doctor.Model.Schedule_update(system_work.getSelectedItem().toString(), day.getText().toString(),
+                millis_start, millis_end, Double.parseDouble(cost.getText().toString()));
+                sceduleupdate_viewmodel.Update_schedule(schedule1.get_id().toString() , context = Schedule_update.this , schedule);
             }
         });
 
 
-
     }
+
+    public void addItemsOnSpinner() {
+        List<String> list = new ArrayList<>();
+        list.add(schedule1.getBookSystem());
+            if (schedule1.getBookSystem().equals("byNumber")){
+                list.add("byTime");
+            }else {
+                list.add("byNumber");
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            system_work.setAdapter(adapter);
+    }
+
+
 
     public void Start_Time() {
 
@@ -162,7 +177,7 @@ public class Put_Appointment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DatePickerDialog dialog = new DatePickerDialog(Put_Appointment.this
+                DatePickerDialog dialog = new DatePickerDialog(Schedule_update.this
                         , android.R.style.Theme_Holo_Light_Dialog_MinWidth
                         , onDateSetListener, yearr, monthh, dayy);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -170,7 +185,6 @@ public class Put_Appointment extends AppCompatActivity {
 
             }
         });
-
 
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -216,50 +230,33 @@ public class Put_Appointment extends AppCompatActivity {
 
             }
         };
+    }
+        public void Time_Picker(final EditText time){
 
 
+            TimePickerDialog timePickerDialog = new TimePickerDialog(Schedule_update.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                    view.setIs24HourView(true);
+                    hour = hourOfDay;
+                    minutes = minute;
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(0, 0, 0, hour , minutes);
+
+                    time.setText(DateFormat.format("HH:mm" , calendar));
+
+                }
+            },12 , 0 , false
+
+            );
+
+            timePickerDialog.updateTime(hour , minutes);
+            timePickerDialog.show();
 
 
+        }
 
 
     }
-
-    public void Time_Picker(final EditText time){
-
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(Put_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-                view.setIs24HourView(true);
-                hour = hourOfDay;
-                minutes = minute;
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(0, 0, 0, hour , minutes);
-
-                time.setText(DateFormat.format("HH:mm" , calendar));
-
-            }
-        },12 , 0 , false
-
-        );
-
-        timePickerDialog.updateTime(hour , minutes);
-        timePickerDialog.show();
-
-
-    }
-
-    public void Spinner_System(){
-
-        ArrayList<String> itemss = new ArrayList<>();
-        itemss.add("byNumber");
-        itemss.add("byTime");
-
-        ArrayAdapter<String> items = new ArrayAdapter<>(getApplicationContext()
-                , android.R.layout.simple_spinner_dropdown_item, itemss);
-        system_work.setAdapter(items);
-
-    }
-}

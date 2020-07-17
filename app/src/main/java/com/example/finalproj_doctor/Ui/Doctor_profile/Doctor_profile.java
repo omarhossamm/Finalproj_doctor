@@ -1,78 +1,50 @@
 package com.example.finalproj_doctor.Ui.Doctor_profile;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
-import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.finalproj_doctor.Model.Doctor;
 import com.example.finalproj_doctor.Model.Review;
 import com.example.finalproj_doctor.Pref.Doctor_pref;
-import com.example.finalproj_doctor.Model.Upload_response;
-import com.example.finalproj_doctor.Network.Client;
-import com.example.finalproj_doctor.Network.RetrofitApi;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Appointment_edit.Myappointment_edit;
 import com.example.finalproj_doctor.Ui.Location_update.Location_update;
 import com.example.finalproj_doctor.Ui.Personal_information.Personal_information;
 import com.example.finalproj_doctor.Ui.Review_doc.Review_doc;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Doctor_profile extends AppCompatActivity {
 
@@ -83,6 +55,7 @@ public class Doctor_profile extends AppCompatActivity {
     CircleImageView doc_pic;
     Doctor_pref doctor_pref;
     LinearLayout personal_information , location_linear , review_linear;
+    Button my_appointment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +66,11 @@ public class Doctor_profile extends AppCompatActivity {
         personal_information = findViewById(R.id.personal_information_linear);
         location_linear = findViewById(R.id.location_linear);
         review_linear = findViewById(R.id.reviews_linear);
+        my_appointment = findViewById(R.id.my_appointment);
 
         doctor_pref = new Doctor_pref(context = Doctor_profile.this , "Data");
+
+        doc_pic.setImageURI(Uri.parse("https://sleepy-dusk-06409.herokuapp.com/uploads/" + doctor_pref.get_Image()));
 
         Permission();
 
@@ -124,6 +100,13 @@ public class Doctor_profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Doctor_profile.this , Review_doc.class));
+            }
+        });
+
+        my_appointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Doctor_profile.this , Myappointment_edit.class));
             }
         });
 

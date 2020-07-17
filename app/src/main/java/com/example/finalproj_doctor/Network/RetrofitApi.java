@@ -8,6 +8,7 @@ import com.example.finalproj_doctor.Model.Pojo.Schedule_response;
 import com.example.finalproj_doctor.Model.Pojo.UserAppointment_pojo;
 import com.example.finalproj_doctor.Model.Response_signup;
 import com.example.finalproj_doctor.Model.Schedule;
+import com.example.finalproj_doctor.Model.Schedule_update;
 import com.example.finalproj_doctor.Model.Sign_up;
 import com.example.finalproj_doctor.Model.Update_doc;
 import com.example.finalproj_doctor.Model.Upload_response;
@@ -18,6 +19,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -62,5 +64,11 @@ public interface RetrofitApi {
 
     @PUT("api/v1/doctors/{id}")
     Call<Doctor_pojo> Update_dr(@Path("id") String id , @Header("Authorization:Bearer") String token , @Body Update_doc update_doc);
+
+    @DELETE("/api/v1/schedules/{schedule_id}")
+    Call<Schedule_response> Delete_schedule(@Path("schedule_id") String schedule_id , @Header("Authorization:Bearer") String token);
+
+    @PUT("/api/v1/schedules/{schedule_id}")
+    Call<Schedule_update> Update_schedule(@Path("schedule_id") String schedule_id , @Header("Authorization:Bearer") String token , @Body Schedule_update schedule);
 
 }

@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 if (s.equals("true")) {
-                    startActivity(new Intent(Login.this, Sign_up.class));
+                    startActivity(new Intent(Login.this, Put_Appointment.class));
             }else {}
             }
         });
