@@ -14,6 +14,11 @@ public class Doctor_pref {
         preferences = context.getSharedPreferences(filename , Context.MODE_PRIVATE);
     }
 
+    public void clear(){
+        SharedPreferences.Editor pref = preferences.edit();
+        pref.clear();
+        pref.apply();
+    }
 
     public void set_Token(String token){
         SharedPreferences.Editor pref = preferences.edit();

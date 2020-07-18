@@ -168,15 +168,6 @@
 
                 <Button
                     android:textColor="#ffff"
-                    android:id="@+id/change_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="#6415ff"
-                    android:text="Change Password" />
-
-                <Button
-                    android:textColor="#ffff"
                     android:id="@+id/logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

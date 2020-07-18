@@ -24,7 +24,12 @@ public class Scheduleupdate_Repository {
         Client.getInstance().retrofitApi.Delete_schedule(schedule_id , doctor_pref.get_Token()).enqueue(new Callback<Schedule_response>() {
             @Override
             public void onResponse(Call<Schedule_response> call, Response<Schedule_response> response) {
-
+                if(response.isSuccessful()){
+                    respnsee.setValue("Schedule added");
+                }
+                else {
+                    respnsee.setValue("Failed");
+                }
             }
 
             @Override

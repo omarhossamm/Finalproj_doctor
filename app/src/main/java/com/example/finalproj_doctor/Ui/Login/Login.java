@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.example.finalproj_doctor.Model.Doctor;
 import com.example.finalproj_doctor.Pref.Doctor_pref;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Sleep;
 import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
+import com.example.finalproj_doctor.Ui.Home_page.Home_page;
 import com.example.finalproj_doctor.Ui.My_Appointment.My_Appointment;
 import com.example.finalproj_doctor.Ui.Put_Appointment.Put_Appointment;
 import com.example.finalproj_doctor.Ui.Sign_up.Sign_up;
@@ -44,28 +46,31 @@ public class Login extends AppCompatActivity {
         sign_up = findViewById(R.id.signup_login);
         login_confirmation = findViewById(R.id.Login_button_login);
 
-        login_viewmodel.getloggedin(context = Login.this , doctor_pref.get_Token());
-        login_viewmodel.getLoggedin().observe(Login.this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s.equals("true")) {
-                    startActivity(new Intent(Login.this, Put_Appointment.class));
-            }else {}
-            }
-        });
 
         login_viewmodel = ViewModelProviders.of(Login.this).get(Login_Viewmodel.class);
         login_viewmodel.getresponse().observe(Login.this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 if (s.equals("تم تسجيل الدخول بنجاح")){
-                    startActivity(new Intent(Login.this , Sign_up.class));
-                }else Toast.makeText(getApplicationContext() , "برجاء التاكد من صحة البيانات" , Toast.LENGTH_LONG).show();
+                    login_confirmation.setEnabled(true);
+                    login_confirmation.setBackgroundResource(R.drawable.radius_button);
+                    startActivity(new Intent(Login.this , Home_page.class));
+                }else{
+                    login_confirmation.setEnabled(true);
+                    login_confirmation.setBackgroundResource(R.drawable.radius_button);
+                    Toast.makeText(getApplicationContext() , "Please enter correct information" , Toast.LENGTH_LONG).show();
+                }
             }
         });
 
 
 
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext() , Sign_up.class));
+            }
+        });
 
 
 
@@ -80,6 +85,8 @@ public class Login extends AppCompatActivity {
                 if (email.getText().length() == 0 || password.getText().length() == 0){
                     Toast.makeText(Login.this , "برجاء ادخال التفاصيل" , Toast.LENGTH_LONG).show();
                 }else {
+                    login_confirmation.setEnabled(false);
+                    login_confirmation.setBackgroundResource(R.drawable.loading_radius);
                     login_viewmodel.Login(login , context = Login.this);
                 }
 

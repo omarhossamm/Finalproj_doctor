@@ -39,6 +39,7 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/name"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
@@ -48,9 +49,10 @@
                     android:layout_height="50dp"
                     android:layout_margin="16dp"
                     android:ems="10"
-                    android:hint="الاسم كاملا" />
+                    android:hint="Full name" />
 
                 <EditText
+                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/mail"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
@@ -60,9 +62,10 @@
                     android:layout_width="match_parent"
                     android:layout_margin="16dp"
                     android:ems="10"
-                    android:hint="البريد الالكتروني" />
+                    android:hint="Email Address" />
 
                 <EditText
+                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/password"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
@@ -72,9 +75,10 @@
                     android:layout_width="match_parent"
                     android:layout_margin="16dp"
                     android:ems="10"
-                    android:hint="كلمة المرور" />
+                    android:hint="Password" />
 
                 <EditText
+                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/password"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
@@ -84,9 +88,10 @@
                     android:layout_width="match_parent"
                     android:layout_margin="16dp"
                     android:ems="10"
-                    android:hint="تاكيد كلمة المرور" />
+                    android:hint="Confirm password" />
 
                 <EditText
+                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/phonee"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
@@ -96,9 +101,10 @@
                     android:layout_width="match_parent"
                     android:layout_margin="16dp"
                     android:ems="10"
-                    android:hint="رقم الهاتف" />
+                    android:hint="Phone number" />
 
                 <EditText
+                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/calendar"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
@@ -109,7 +115,7 @@
                     android:layout_margin="16dp"
                     android:ems="10"
                     android:focusable="false"
-                    android:hint="تاريخ الميلاد" />
+                    android:hint="Birthday" />
 
                 <Spinner
                     android:id="@+id/careers"
@@ -128,9 +134,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/radius_button"
-                    android:text="متابعة"
+                    android:text="Continuous"
                     android:textColor="#fff"
-                    android:textSize="24sp" />
+                    android:textSize="15dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

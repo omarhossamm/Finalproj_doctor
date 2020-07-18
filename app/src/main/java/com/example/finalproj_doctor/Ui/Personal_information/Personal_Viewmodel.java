@@ -15,8 +15,16 @@ public class Personal_Viewmodel extends ViewModel {
         personal_repository.Update_doc(context , update_doc);
     }
 
+    public void Logout(Context context){
+        personal_repository.Logout(context);
+    }
+
     public MutableLiveData<String> getsuc(){
         return personal_repository.suc;
+    }
+
+    public MutableLiveData<String> log_res(){
+        return personal_repository.log_res;
     }
 
 }

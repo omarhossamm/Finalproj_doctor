@@ -65,10 +65,12 @@ public interface RetrofitApi {
     @PUT("api/v1/doctors/{id}")
     Call<Doctor_pojo> Update_dr(@Path("id") String id , @Header("Authorization:Bearer") String token , @Body Update_doc update_doc);
 
-    @DELETE("/api/v1/schedules/{schedule_id}")
+    @DELETE("api/v1/schedules/{schedule_id}")
     Call<Schedule_response> Delete_schedule(@Path("schedule_id") String schedule_id , @Header("Authorization:Bearer") String token);
 
-    @PUT("/api/v1/schedules/{schedule_id}")
+    @PUT("api/v1/schedules/{schedule_id}")
     Call<Schedule_update> Update_schedule(@Path("schedule_id") String schedule_id , @Header("Authorization:Bearer") String token , @Body Schedule_update schedule);
 
+    @GET("api/v1/doctors/auth/logout")
+    Call<Doctor_pojo> Logout(@Header("Authorization:Bearer") String token);
 }

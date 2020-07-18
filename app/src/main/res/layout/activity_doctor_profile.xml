@@ -72,9 +72,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/radius_button"
-                android:text="مواعيدى"
+                android:text="My Schedules"
                 android:textColor="@android:color/white"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -116,9 +116,9 @@
                             android:layout_gravity="center_horizontal|center_vertical"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:text="معلوماتي الشخصية"
+                            android:text="Personal information"
                             android:textColor="@android:color/black"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:textStyle="bold|italic" />
 
                     </LinearLayout>
@@ -154,9 +154,9 @@
                             android:layout_gravity="center_horizontal|center_vertical"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:text="موقع العيادة"
+                            android:text="My location"
                             android:textColor="@android:color/black"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:textStyle="bold|italic" />
 
                     </LinearLayout>
@@ -192,9 +192,9 @@
                             android:layout_gravity="center_horizontal|center_vertical"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:text="التقييمات"
+                            android:text="Reviews"
                             android:textColor="@android:color/black"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:textStyle="bold|italic" />
 
                     </LinearLayout>

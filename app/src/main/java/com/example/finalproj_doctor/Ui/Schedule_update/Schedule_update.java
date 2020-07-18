@@ -94,7 +94,14 @@ public class Schedule_update extends AppCompatActivity {
         sceduleupdate_viewmodel.getresponse().observe(Schedule_update.this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Toast.makeText(Schedule_update.this , s , Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                if (s.equals("Schedule added")){
+                    confirmation.setEnabled(true);
+                    confirmation.setBackgroundColor(getResources().getColor(R.color.color_des));
+                }else {
+                    confirmation.setEnabled(true);
+                    confirmation.setBackgroundColor(getResources().getColor(R.color.color_des));
+                }
             }
         });
 
@@ -118,6 +125,8 @@ public class Schedule_update extends AppCompatActivity {
 
                 com.example.finalproj_doctor.Model.Schedule_update schedule = new com.example.finalproj_doctor.Model.Schedule_update(system_work.getSelectedItem().toString(), day.getText().toString(),
                 millis_start, millis_end, Double.parseDouble(cost.getText().toString()));
+                confirmation.setEnabled(false);
+                confirmation.setBackgroundColor(getResources().getColor(R.color.loading));
                 sceduleupdate_viewmodel.Update_schedule(schedule1.get_id().toString() , context = Schedule_update.this , schedule);
             }
         });

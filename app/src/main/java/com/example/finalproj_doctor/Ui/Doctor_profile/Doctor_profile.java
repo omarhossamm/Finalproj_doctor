@@ -1,10 +1,12 @@
 package com.example.finalproj_doctor.Ui.Doctor_profile;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -22,7 +24,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -46,7 +50,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class Doctor_profile extends AppCompatActivity {
+public class Doctor_profile extends Fragment {
 
     Doctorprofile_Viewmodel doctorprofile_viewmodel;
     Context context;
@@ -57,18 +61,19 @@ public class Doctor_profile extends AppCompatActivity {
     LinearLayout personal_information , location_linear , review_linear;
     Button my_appointment;
 
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_profile);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View layout = LayoutInflater.from(getContext()).inflate(R.layout.activity_doctor_profile , null);
 
-        doc_pic = findViewById(R.id.doctor_pic);
-        personal_information = findViewById(R.id.personal_information_linear);
-        location_linear = findViewById(R.id.location_linear);
-        review_linear = findViewById(R.id.reviews_linear);
-        my_appointment = findViewById(R.id.my_appointment);
+    doc_pic = layout.findViewById(R.id.doctor_pic);
+        personal_information = layout.findViewById(R.id.personal_information_linear);
+        location_linear = layout.findViewById(R.id.location_linear);
+        review_linear = layout.findViewById(R.id.reviews_linear);
+        my_appointment = layout.findViewById(R.id.my_appointment);
 
-        doctor_pref = new Doctor_pref(context = Doctor_profile.this , "Data");
+        doctor_pref = new Doctor_pref(getContext() , "Data");
 
         doc_pic.setImageURI(Uri.parse("https://sleepy-dusk-06409.herokuapp.com/uploads/" + doctor_pref.get_Image()));
 
@@ -85,35 +90,36 @@ public class Doctor_profile extends AppCompatActivity {
         personal_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Doctor_profile.this , Personal_information.class));
+                startActivity(new Intent(getContext() , Personal_information.class));
+
             }
         });
 
         location_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Doctor_profile.this , Location_update.class));
+                startActivity(new Intent(getContext() , Location_update.class));
             }
         });
 
         review_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Doctor_profile.this , Review_doc.class));
+                startActivity(new Intent(getContext() , Review_doc.class));
             }
         });
 
         my_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Doctor_profile.this , Myappointment_edit.class));
+                startActivity(new Intent(getContext() , Myappointment_edit.class));
             }
         });
 
-        doc_name = findViewById(R.id.name_doctor);
-        doc_spec = findViewById(R.id.doctor_spec);
-        doc_reviews = findViewById(R.id.doctor_reviews_txt);
-        doc_rating = findViewById(R.id.doctor_rating);
+        doc_name = layout.findViewById(R.id.name_doctor);
+        doc_spec = layout.findViewById(R.id.doctor_spec);
+        doc_reviews = layout.findViewById(R.id.doctor_reviews_txt);
+        doc_rating = layout.findViewById(R.id.doctor_rating);
 
 
         doctorprofile_viewmodel = new Doctorprofile_Viewmodel();
@@ -131,7 +137,7 @@ public class Doctor_profile extends AppCompatActivity {
                 Picasso.get().load("https://sleepy-dusk-06409.herokuapp.com/uploads/" + doctor_pref.getData().getPhoto()).into(doc_pic);
 
 
-                doctorprofile_viewmodel.getreviews(context = Doctor_profile.this);
+                doctorprofile_viewmodel.getreviews(getContext());
                 doctorprofile_viewmodel.review_response().observe(Doctor_profile.this, new Observer<List<Review>>() {
                     @Override
                     public void onChanged(List<Review> reviews) {
@@ -152,7 +158,10 @@ public class Doctor_profile extends AppCompatActivity {
 
 
 
-    }
+
+
+    return layout;
+}
 
     public void choose() {
         Intent intent = new Intent();
@@ -164,15 +173,15 @@ public class Doctor_profile extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, final int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+        if (requestCode == 1 && resultCode == getActivity().RESULT_OK && null != data) {
             if (resultCode == Activity.RESULT_OK) {
 
 
                  Uri   originalUri = data.getData();
-                String    filePath = getPath(context = Doctor_profile.this , originalUri);
+                String    filePath = getPath(getContext() , originalUri);
 
                 File file = new File(filePath);
                 doc_pic.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
@@ -180,11 +189,11 @@ public class Doctor_profile extends AppCompatActivity {
                 RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), reqFile);
 
-                doctorprofile_viewmodel.photo(context = Doctor_profile.this , body);
+                doctorprofile_viewmodel.photo(getContext() , body);
                 doctorprofile_viewmodel.getresponse().observe(Doctor_profile.this, new Observer<String>() {
                     @Override
                     public void onChanged(String s) {
-                        Toast.makeText(getApplicationContext() , s , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext() , s , Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -196,10 +205,10 @@ public class Doctor_profile extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1 && grantResults.length > 0){
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                recreate();
+                getActivity().recreate();
             }
             else {
-                Toast.makeText(getApplicationContext() , "Denied" , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext() , "Denied" , Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -207,9 +216,9 @@ public class Doctor_profile extends AppCompatActivity {
 
     public void Permission() {
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(Doctor_profile.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.WRITE_EXTERNAL_STORAGE}
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.WRITE_EXTERNAL_STORAGE}
                     , 1);
 
         } else {

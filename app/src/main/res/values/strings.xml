@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Finalproj_doctor</string>
+    <string name="title_activity_home_page">MainActivity</string>
+    <string name="title_home">Schedule</string>
+    <string name="title_dashboard">Put Schedule</string>
+    <string name="title_notifications">Profile</string>
 </resources>

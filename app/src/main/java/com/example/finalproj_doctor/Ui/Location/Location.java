@@ -77,7 +77,13 @@ public class Location extends AppCompatActivity implements OnMapReadyCallback {
             public void onChanged(String s) {
                 Toast.makeText(Location.this , s , Toast.LENGTH_LONG).show();
                 if (s.equals("تم التسجيل بنجاح")){
+                    registration.setEnabled(true);
+                    registration.setBackgroundResource(R.drawable.radius_button);
                     startActivity(new Intent(Location.this , Doctor_profile.class));
+                }else {
+                    registration.setEnabled(true);
+                    registration.setBackgroundResource(R.drawable.radius_button);
+                    Toast.makeText(getApplicationContext() , "Failed" , Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -158,7 +164,7 @@ public class Location extends AppCompatActivity implements OnMapReadyCallback {
                         street.setText(knownNamee);
                         block.setText("");
 
-                        Toast.makeText(Location.this , "برجاء التاكد من صحة العنوان" , Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Location.this , "برجاء التاكد من صحة العنوان" , Toast.LENGTH_LONG).show();
 
 
 
@@ -169,8 +175,10 @@ public class Location extends AppCompatActivity implements OnMapReadyCallback {
 
                                 if (country.length() == 0 || state.length() == 0 || city.length() == 0
                                         || street.length() == 0 || block.length() == 0) {
-                                    Toast.makeText(Location.this, "برجاء التاكد من العنوان", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Location.this, "Please enter full location", Toast.LENGTH_LONG).show();
                                 } else {
+                                    registration.setEnabled(false);
+                                    registration.setBackgroundResource(R.drawable.loading_radius);
                                     ArrayList<Double> list = new ArrayList<>();
                                     list.add(latLng.longitude);
                                     list.add(latLng.latitude);

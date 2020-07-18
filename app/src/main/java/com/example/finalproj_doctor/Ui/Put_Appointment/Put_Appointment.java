@@ -1,6 +1,9 @@
 package com.example.finalproj_doctor.Ui.Put_Appointment;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -11,7 +14,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -32,44 +37,53 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Put_Appointment extends AppCompatActivity {
+public class Put_Appointment extends Fragment {
 
-    EditText date , time_start , cost  , time_end;
+    EditText date, time_start, cost, time_end;
     Spinner system_work;
     TextView day;
-    int hour , minutes;
+    int hour, minutes;
     String day_arab;
     Button confirmation;
     DatePickerDialog.OnDateSetListener onDateSetListener;
-    int yearr , monthh , dayy;
+    int yearr, monthh, dayy;
     Calendar calendar;
     Putappointment_Viewmodel putappointment_viewmodel;
     Doctor_pref doctor_pref;
     Context context;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_put__appointment);
 
-        doctor_pref = new Doctor_pref(context = Put_Appointment.this , "Data");
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View layout = LayoutInflater.from(getContext()).inflate(R.layout.activity_put__appointment, null);
+
+
+        doctor_pref = new Doctor_pref(getContext(), "Data");
 
         putappointment_viewmodel = new Putappointment_Viewmodel();
         putappointment_viewmodel = ViewModelProviders.of(Put_Appointment.this).get(Putappointment_Viewmodel.class);
 
-        date = findViewById(R.id.date_work);
-        time_start = findViewById(R.id.time_start);
-        time_end = findViewById(R.id.time_end);
-        cost = findViewById(R.id.cost);
-        system_work = findViewById(R.id.system);
-        confirmation = findViewById(R.id.confirming_btn_confirming);
+        date = layout.findViewById(R.id.date_work);
+        time_start = layout.findViewById(R.id.time_start);
+        time_end = layout.findViewById(R.id.time_end);
+        cost = layout.findViewById(R.id.cost);
+        system_work = layout.findViewById(R.id.system);
+        confirmation = layout.findViewById(R.id.confirming_btn_confirming);
 
-        day = findViewById(R.id.day_txt_confirming);
+        day = layout.findViewById(R.id.day_txt_confirming);
 
 
         putappointment_viewmodel.get_response().observe(Put_Appointment.this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Toast.makeText(getApplicationContext() , s , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+                if (s.equals("Schedule added")){
+                    confirmation.setEnabled(true);
+                    confirmation.setBackgroundColor(getResources().getColor(R.color.color_des));
+                }else {
+                    confirmation.setEnabled(true);
+                    confirmation.setBackgroundColor(getResources().getColor(R.color.color_des));
+                }
             }
         });
 
@@ -77,8 +91,6 @@ public class Put_Appointment extends AppCompatActivity {
         Start_Time();
         End_Time();
         Spinner_System();
-
-
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd HH:mm");
@@ -93,14 +105,13 @@ public class Put_Appointment extends AppCompatActivity {
         //Toast.makeText(getApplicationContext() , " " + y , Toast.LENGTH_LONG).show();
 
 
-
         confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (date.length() == 0 || time_start.length() == 0 || time_end.length() == 0
-                || cost.length() == 0) {
-                    Toast.makeText(Put_Appointment.this, "برجاء كتابة كافة البيانات", Toast.LENGTH_LONG).show();
-                }else {
+                        || cost.length() == 0) {
+                    Toast.makeText(getContext(), "برجاء كتابة كافة البيانات", Toast.LENGTH_LONG).show();
+                } else {
                     long millis_start = 0, millis_end = 0;
                     try {
                         String start = date.getText().toString() + " " + time_start.getText().toString();
@@ -114,14 +125,17 @@ public class Put_Appointment extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+                    confirmation.setEnabled(false);
+                    confirmation.setBackgroundColor(getResources().getColor(R.color.loading));
                     Schedule schedule = new Schedule(system_work.getSelectedItem().toString(), day.getText().toString(),
-                    0, 0, millis_start, millis_end, Double.parseDouble(cost.getText().toString()));
+                            0, 0, millis_start, millis_end, Double.parseDouble(cost.getText().toString()));
                     putappointment_viewmodel.Post_Schedule(doctor_pref.get_Token(), schedule);
                 }
             }
         });
 
 
+        return layout;
 
     }
 
@@ -139,7 +153,7 @@ public class Put_Appointment extends AppCompatActivity {
         });
     }
 
-    public void End_Time(){
+    public void End_Time() {
 
         time_end.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +176,7 @@ public class Put_Appointment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DatePickerDialog dialog = new DatePickerDialog(Put_Appointment.this
+                DatePickerDialog dialog = new DatePickerDialog(getContext()
                         , android.R.style.Theme_Holo_Light_Dialog_MinWidth
                         , onDateSetListener, yearr, monthh, dayy);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -170,7 +184,6 @@ public class Put_Appointment extends AppCompatActivity {
 
             }
         });
-
 
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -189,19 +202,19 @@ public class Put_Appointment extends AppCompatActivity {
 
 
                     if (Calendar.MONDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الاثنين";
+                        day_arab = "Monday";
                     } else if (Calendar.TUESDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الثلاثاء";
+                        day_arab = "Tuesday";
                     } else if (Calendar.WEDNESDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الاربعاء";
+                        day_arab = "Wednesday";
                     } else if (Calendar.THURSDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الخميس";
+                        day_arab = "Thursday";
                     } else if (Calendar.FRIDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الجمعة";
+                        day_arab = "Friday";
                     } else if (Calendar.SATURDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "السبت";
+                        day_arab = "Saturday";
                     } else if (Calendar.SUNDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الاحد";
+                        day_arab = "Sunday";
                     }
 
                     day.setText(day_arab);
@@ -218,16 +231,12 @@ public class Put_Appointment extends AppCompatActivity {
         };
 
 
-
-
-
-
     }
 
-    public void Time_Picker(final EditText time){
+    public void Time_Picker(final EditText time) {
 
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(Put_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
@@ -236,30 +245,33 @@ public class Put_Appointment extends AppCompatActivity {
                 minutes = minute;
 
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(0, 0, 0, hour , minutes);
+                calendar.set(0, 0, 0, hour, minutes);
 
-                time.setText(DateFormat.format("HH:mm" , calendar));
+                time.setText(DateFormat.format("HH:mm", calendar));
 
             }
-        },12 , 0 , false
+        }, 12, 0, false
 
         );
 
-        timePickerDialog.updateTime(hour , minutes);
+        timePickerDialog.updateTime(hour, minutes);
         timePickerDialog.show();
 
 
     }
 
-    public void Spinner_System(){
+    public void Spinner_System() {
 
         ArrayList<String> itemss = new ArrayList<>();
         itemss.add("byNumber");
         itemss.add("byTime");
 
-        ArrayAdapter<String> items = new ArrayAdapter<>(getApplicationContext()
+        ArrayAdapter<String> items = new ArrayAdapter<>(getContext()
                 , android.R.layout.simple_spinner_dropdown_item, itemss);
         system_work.setAdapter(items);
 
     }
-}
+    }
+
+
+

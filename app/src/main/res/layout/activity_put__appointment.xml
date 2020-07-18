@@ -9,9 +9,9 @@
     >
 
     <LinearLayout
-        android:background="#6415ff"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
+        android:background="#6415ff"
         android:orientation="vertical">
 
         <ImageView
@@ -35,18 +35,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="right"
+            android:gravity="left"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="التاريخ"
+                android:text="Date"
                 android:textColor="#000"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,27 +59,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right"
+                android:gravity="left"
                 android:orientation="horizontal">
-
-                <EditText
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/date_work"
-                    android:layout_width="wrap_content"
-                    android:ems="5"
-                    android:focusable="false"
-                    android:gravity="end"
-                    android:inputType="datetime"
-                    android:text=""
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.934"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.358" />
 
                 <TextView
                     android:id="@+id/day_txt_confirming"
@@ -86,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
                     android:layout_marginLeft="10dp"
-                    android:text="يوم العمل"
+                    android:text="Day"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +76,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.176" />
+
+                <EditText
+                    android:id="@+id/date_work"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:focusable="false"
+                    android:gravity="left"
+                    android:inputType="datetime"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text=""
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.934"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.358" />
+
             </LinearLayout>
 
 
@@ -102,9 +104,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="نظام العمل"
+                android:text="System"
                 android:textColor="#000"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,17 +125,14 @@
                 android:spinnerMode="dropdown" />
 
 
-
-
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="بداية العمل"
+                android:text="Start time"
                 android:textColor="#000"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -143,17 +142,17 @@
                 app:layout_constraintVertical_bias="0.284" />
 
             <EditText
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/time_start"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:focusable="false"
-                android:gravity="end"
+                android:gravity="left"
                 android:inputType="datetime"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:text=""
-                android:textAlignment="textEnd"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.934"
@@ -167,9 +166,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="نهاية العمل"
+                android:text="End time"
                 android:textColor="#000"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,16 +179,15 @@
 
             <EditText
                 android:id="@+id/time_end"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:focusable="false"
-                android:gravity="end"
+                android:gravity="left"
                 android:inputType="datetime"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:text=""
-                android:textAlignment="textEnd"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.924"
@@ -202,9 +200,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="تكلفة الجلسة"
+                android:text="Session cost"
                 android:textColor="#000"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -214,16 +212,15 @@
                 app:layout_constraintVertical_bias="0.701" />
 
             <EditText
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/cost"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:ems="10"
-                android:gravity="end"
+                android:gravity="left"
                 android:inputType="number"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:text=""
-                android:textAlignment="textEnd"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.919"
@@ -240,9 +237,9 @@
                 android:layout_marginBottom="20dp"
                 android:width="300dp"
                 android:background="#6415ff"
-                android:text="تاكيد "
+                android:text="confirm"
                 android:textColor="#fff"
-                android:textSize="24sp"
+                android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"

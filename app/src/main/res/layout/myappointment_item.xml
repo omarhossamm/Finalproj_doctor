@@ -29,7 +29,7 @@
                 android:layout_toStartOf="@+id/data_icon"
                 android:layout_toLeftOf="@+id/data_icon"
                 android:text="11:00 م"
-                android:textSize="24sp" />
+                android:textSize="20dp" />
 
             <ImageView
                 android:id="@+id/data_icon"
@@ -58,7 +58,7 @@
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="41dp"
                 android:text="الاربعاء, 13/7/2020"
-                android:textSize="24sp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/current_number"
@@ -67,7 +67,7 @@
                 android:layout_below="@+id/total_reservision"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:textSize="24sp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/total_reservision"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:textSize="24sp" />
+                android:textSize="20dp" />
 
 
         </RelativeLayout>

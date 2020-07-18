@@ -19,10 +19,10 @@ public class Putappointment_Repository {
             @Override
             public void onResponse(Call<Schedule> call, Response<Schedule> response) {
                 if(response.isSuccessful()){
-                    respnsee.setValue("تم اضافة موعد بنجاح");
+                    respnsee.setValue("Schedule added");
                 }
                 else {
-                    respnsee.setValue("لم ينجح");
+                    respnsee.setValue("Failed");
                 }
             }
 
