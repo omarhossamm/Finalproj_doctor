@@ -36,7 +36,11 @@ public class Splash extends AppCompatActivity {
             public void onChanged(String s) {
                 if (s.equals("true")) {
                     startActivity(new Intent(Splash.this, Home_page.class));
-                }else {startActivity(new Intent(Splash.this , Login.class));}
+                    finish();
+                }else {
+                    startActivity(new Intent(Splash.this , Login.class));
+                    finish();
+                }
             }
         });
 

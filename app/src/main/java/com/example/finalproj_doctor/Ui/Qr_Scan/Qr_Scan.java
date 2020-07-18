@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.finalproj_doctor.R;
 import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
+import com.example.finalproj_doctor.Ui.Home_page.Home_page;
+import com.example.finalproj_doctor.Ui.My_Appointment.My_Appointment;
 import com.example.finalproj_doctor.Ui.Scan.Scan;
 
 public class Qr_Scan extends AppCompatActivity {
@@ -83,5 +85,11 @@ public class Qr_Scan extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Qr_Scan.this , Home_page.class));
+        finish();
+        super.onBackPressed();
 
+    }
 }

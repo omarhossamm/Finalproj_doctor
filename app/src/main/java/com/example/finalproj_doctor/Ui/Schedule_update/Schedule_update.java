@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.finalproj_doctor.Model.Schedule;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Appointment_edit.Myappointment_edit;
 import com.google.gson.Gson;
 
 import java.text.ParseException;
@@ -95,9 +96,10 @@ public class Schedule_update extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-                if (s.equals("Schedule added")){
+                if (s.equals("Schedule update")){
                     confirmation.setEnabled(true);
                     confirmation.setBackgroundColor(getResources().getColor(R.color.color_des));
+                    startActivity(new Intent(getApplicationContext() , Myappointment_edit.class));
                 }else {
                     confirmation.setEnabled(true);
                     confirmation.setBackgroundColor(getResources().getColor(R.color.color_des));
@@ -212,19 +214,19 @@ public class Schedule_update extends AppCompatActivity {
 
 
                     if (Calendar.MONDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الاثنين";
+                        day_arab = "Monday";
                     } else if (Calendar.TUESDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الثلاثاء";
+                        day_arab = "Tuesday";
                     } else if (Calendar.WEDNESDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الاربعاء";
+                        day_arab = "Wednesday";
                     } else if (Calendar.THURSDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الخميس";
+                        day_arab = "Thursday";
                     } else if (Calendar.FRIDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الجمعة";
+                        day_arab = "Friday";
                     } else if (Calendar.SATURDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "السبت";
+                        day_arab = "Saturday";
                     } else if (Calendar.SUNDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
-                        day_arab = "الاحد";
+                        day_arab = "Sunday";
                     }
 
                     day.setText(day_arab);

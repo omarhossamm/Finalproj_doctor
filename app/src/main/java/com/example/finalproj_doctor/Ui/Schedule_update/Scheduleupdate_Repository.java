@@ -25,7 +25,7 @@ public class Scheduleupdate_Repository {
             @Override
             public void onResponse(Call<Schedule_response> call, Response<Schedule_response> response) {
                 if(response.isSuccessful()){
-                    respnsee.setValue("Schedule added");
+                    respnsee.setValue("Success");
                 }
                 else {
                     respnsee.setValue("Failed");
@@ -47,7 +47,7 @@ public class Scheduleupdate_Repository {
             @Override
             public void onResponse(Call<Schedule_update> call, Response<Schedule_update> response) {
                 if (response.isSuccessful()){
-                    respnsee.setValue("Success");
+                    respnsee.setValue("Schedule update");
                 }else {
                     respnsee.setValue("Failed");
                 }
