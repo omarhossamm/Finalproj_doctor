@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.finalproj_doctor.Model.Sign_up;
 import com.example.finalproj_doctor.R;
 import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
+import com.example.finalproj_doctor.Ui.Home_page.Home_page;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -79,7 +80,8 @@ public class Location extends AppCompatActivity implements OnMapReadyCallback {
                 if (s.equals("تم التسجيل بنجاح")){
                     registration.setEnabled(true);
                     registration.setBackgroundResource(R.drawable.radius_button);
-                    startActivity(new Intent(Location.this , Doctor_profile.class));
+                    startActivity(new Intent(Location.this , Home_page.class));
+                    finish();
                 }else {
                     registration.setEnabled(true);
                     registration.setBackgroundResource(R.drawable.radius_button);

@@ -128,7 +128,8 @@ public class Put_Appointment extends Fragment {
                     confirmation.setEnabled(false);
                     confirmation.setBackgroundColor(getResources().getColor(R.color.loading));
                     Schedule schedule = new Schedule(system_work.getSelectedItem().toString(), day.getText().toString(),
-                            0, 0, millis_start, millis_end, Double.parseDouble(cost.getText().toString()));
+                            0, 0, millis_start, millis_end
+                            , Double.parseDouble(cost.getText().toString()));
                     putappointment_viewmodel.Post_Schedule(doctor_pref.get_Token(), schedule);
                 }
             }

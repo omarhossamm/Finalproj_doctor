@@ -67,8 +67,8 @@ public class Doctorappointments_edit_Adapter extends RecyclerView.Adapter<Doctor
         String end = formatter1.format(endat.getTime());
 
 
-        holder.total_number.setText("عدد الحجوزات" + " : " + arrayList.get(position).getTotalNumber());
-        holder.current_number.setText("الرقم الحالي" + " : " + arrayList.get(position).getCurrentNumber());
+        holder.total_number.setText("All booked" + " : " + arrayList.get(position).getTotalNumber());
+        holder.current_number.setText("Current number" + " : " + arrayList.get(position).getCurrentNumber());
         holder.date.setText(arrayList.get(position).getDay() + " , " + start);
         holder.time.setText( formatter1.format(startat.getTime()) + " , " + end);
 

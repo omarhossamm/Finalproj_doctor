@@ -39,69 +39,74 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/name"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/edit_text"
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/name"
+                    android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Full name" />
+                    android:hint="Full name"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
 
                 <EditText
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/mail"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/edit_text"
-                    android:layout_height="50dp"
                     android:id="@+id/email"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/mail"
+                    android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Email Address" />
+                    android:hint="Email Address"
+                    android:inputType="textWebEmailAddress"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
 
                 <EditText
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/password"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/edit_text"
-                    android:layout_height="50dp"
                     android:id="@+id/password"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/password"
+                    android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Password" />
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
 
                 <EditText
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/password"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/edit_text"
-                    android:layout_height="50dp"
                     android:id="@+id/conf_password"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/password"
+                    android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Confirm password" />
+                    android:hint="Confirm password"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
 
                 <EditText
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/phonee"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/edit_text"
-                    android:layout_height="50dp"
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/phonee"
+                    android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Phone number" />
+                    android:hint="Phone number"
+                    android:inputType="number"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
 
                 <EditText
                     android:drawablePadding="10dp"
