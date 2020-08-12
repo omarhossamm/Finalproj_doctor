@@ -6,11 +6,18 @@ import java.util.List;
 public class UsersAppointment_model {
 
     private String patientName ;
-    private Object _id , schedule;
+    private Object _id , schedule , user;
     private int phone , age , patientNumber ;
     private Date createdAt;
     private boolean sessionBegun;
 
+    public Object getUser() {
+        return user;
+    }
+
+    public void setUser(Object user) {
+        this.user = user;
+    }
 
     public String getPatientName() {
         return patientName;

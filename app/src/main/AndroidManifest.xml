@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.finalproj_doctor">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Sleep"></activity>
+
+        <activity android:name=".Sleep" ></activity>
         <activity android:name=".Ui.Schedule_update.Schedule_update" />
         <activity android:name=".Ui.Appointment_edit.Myappointment_edit" />
         <activity android:name=".Ui.Review_doc.Review_doc" />
@@ -32,8 +34,12 @@
         <activity
             android:name=".Ui.Home_page.Home_page"
             android:label="@string/title_activity_home_page" />
+        <activity android:name=".Ui.Chat.Chat"
+            tools:ignore="Instantiatable" />
         <activity android:name=".Ui.Login.Login" />
-        <activity android:name=".Ui.Splash.Splash">
+        <activity android:name=".Ui.Splash.Splash"/>
+        <activity android:name=".Ui.Message_chat.Message_chat">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

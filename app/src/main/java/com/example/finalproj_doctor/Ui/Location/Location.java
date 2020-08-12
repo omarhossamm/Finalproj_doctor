@@ -193,7 +193,8 @@ public class Location extends AppCompatActivity implements OnMapReadyCallback {
 
                                     Sign_up sign_up = new Sign_up(name, password, phone, email
                                             , countryy + " , " + statee + " , " + city.getText().toString() + " , " +
-                                            street.getText().toString() + " , " + block.getText().toString(), location, careerss, "Hello for every one");
+                                            street.getText().toString() + " , " + block.getText().toString(), location, careerss, "Hello for every one"
+                                    , 0.0);
 
                                     location_viewmodel.signup(context = Location.this , sign_up);
 

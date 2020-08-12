@@ -6,6 +6,7 @@ import android.view.MenuItem;
 
 import com.example.finalproj_doctor.Model.Pojo.Doctor_pojo;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Chat.Chat;
 import com.example.finalproj_doctor.Ui.Doctor_profile.Doctor_profile;
 import com.example.finalproj_doctor.Ui.My_Appointment.My_Appointment;
 import com.example.finalproj_doctor.Ui.Put_Appointment.Put_Appointment;
@@ -64,6 +65,10 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
 
             case R.id.profile_nav:
                 fragment = new Doctor_profile();
+                break;
+
+            case R.id.chat:
+                fragment = new Chat();
                 break;
 
 

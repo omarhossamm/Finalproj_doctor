@@ -8,8 +8,9 @@ public class Sign_up {
     private String name , password , phone , email , address , description ;
     private Location location;
     private ArrayList<String> speciality;
+    //private double averageRating;
 
-    public Sign_up(String name, String password, String phone, String email, String address, Location location, ArrayList<String> speciality , String description) {
+    public Sign_up(String name, String password, String phone, String email, String address, Location location, ArrayList<String> speciality , String description , Double averageRating) {
         this.name = name;
         this.password = password;
         this.phone = phone;
@@ -18,8 +19,17 @@ public class Sign_up {
         this.location = location;
         this.speciality = speciality;
         this.description = description;
+      //  this.averageRating = averageRating;
+    }
+/*
+    public double getAverageRating() {
+        return averageRating;
     }
 
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
+*/
     public String getDescription() {
         return description;
     }

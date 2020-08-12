@@ -16,4 +16,10 @@
         android:icon="@drawable/user"
         android:title="@string/title_notifications" />
 
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/chat_home"
+        android:title="Chat"
+        />
+
 </menu>

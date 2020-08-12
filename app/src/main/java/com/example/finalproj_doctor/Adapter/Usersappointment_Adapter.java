@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproj_doctor.Model.UsersAppointment_model;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Chat.Chat;
+import com.example.finalproj_doctor.Ui.Message_chat.Message_chat;
 import com.example.finalproj_doctor.Ui.Qr_Scan.Qr_Scan;
 
 import java.util.ArrayList;
@@ -52,11 +54,21 @@ public class Usersappointment_Adapter extends RecyclerView.Adapter<Usersappointm
             }
         });
 
+        holder.chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext() , Message_chat.class);
+                intent.putExtra("user_id" , arrayList.get(position).getUser().toString());
+                view.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     public static class holderr extends RecyclerView.ViewHolder {
 
         TextView name , phone , age , tracking_number;
+        ImageView chat;
         LinearLayout linearLayout;
 
         public holderr(View itemView) {
@@ -67,6 +79,7 @@ public class Usersappointment_Adapter extends RecyclerView.Adapter<Usersappointm
             age = itemView.findViewById(R.id.age);
             tracking_number = itemView.findViewById(R.id.tracking_number);
             linearLayout = itemView.findViewById(R.id.linear);
+            chat = itemView.findViewById(R.id.chat);
 
         }
     }

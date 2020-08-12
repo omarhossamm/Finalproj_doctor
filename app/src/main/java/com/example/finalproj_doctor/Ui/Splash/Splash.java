@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.finalproj_doctor.Pref.Doctor_pref;
 import com.example.finalproj_doctor.R;
@@ -31,21 +32,24 @@ public class Splash extends AppCompatActivity {
         doctor_pref = new Doctor_pref(context = Splash.this , "Data");
 
 
-        login_viewmodel.getLoggedin().observe(Splash.this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s.equals("true")) {
-                    startActivity(new Intent(Splash.this, Home_page.class));
-                    finish();
-                }else {
-                    startActivity(new Intent(Splash.this , Login.class));
-                    finish();
+//        if (doctor_pref.get_Token().isEmpty()){
+//            Toast.makeText(getApplicationContext() , "empty" , Toast.LENGTH_LONG).show();
+//        }else {
+
+            login_viewmodel.getLoggedin().observe(Splash.this, new Observer<String>() {
+                @Override
+                public void onChanged(String s) {
+                    if (s.equals("true")) {
+                        startActivity(new Intent(Splash.this, Home_page.class));
+                    } else {
+                        startActivity(new Intent(Splash.this, Login.class));
+                    }
+                  //  finish();
                 }
-            }
-        });
+            });
 
 
-        login_viewmodel.getloggedin(context = Splash.this , doctor_pref.get_Token());
-
+            login_viewmodel.getloggedin(context = Splash.this, doctor_pref.get_Token());
+        //}
     }
 }
