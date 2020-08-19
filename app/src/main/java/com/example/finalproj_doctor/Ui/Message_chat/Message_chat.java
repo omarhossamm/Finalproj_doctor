@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.finalproj_doctor.Adapter.Message_Adapter;
 import com.example.finalproj_doctor.Model.Message;
 import com.example.finalproj_doctor.Model.Pojo.Message_Pojo;
+import com.example.finalproj_doctor.Model.Post_msg;
 import com.example.finalproj_doctor.Network.Client;
 import com.example.finalproj_doctor.Pref.Doctor_pref;
 import com.example.finalproj_doctor.R;
@@ -64,6 +66,7 @@ public class Message_chat extends AppCompatActivity {
 
         message_adapter = new Message_Adapter(context = Message_chat.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext() , RecyclerView.VERTICAL , false);
+        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         message_viewmodel = new Message_Viewmodel();
@@ -76,13 +79,36 @@ public class Message_chat extends AppCompatActivity {
             }
         });
 
+        message_viewmodel.get_msgresp().observe(Message_chat.this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s.equals("true")){
+message.setText("");
+                }else {
+
+                }
+            }
+        });
+
         message_viewmodel.Get_Conversation(getApplicationContext());
         recyclerView.setAdapter(message_adapter);
+
+        
 
 
         onSocketConnect();
         mSocket.emit("identity", "5f126b2e1f077e0004c0e955");
         mSocket.emit("subscribe", "5f2c3e9066da620004360971");
+
+
+        send_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Post_msg post_msg = new Post_msg(message.getText().toString());
+
+                message_viewmodel.Post_msg(context = Message_chat.this , post_msg);
+            }
+        });
 
     }
 

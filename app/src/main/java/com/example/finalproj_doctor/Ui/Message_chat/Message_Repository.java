@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalproj_doctor.Model.Message;
 import com.example.finalproj_doctor.Model.Pojo.Message_Pojo;
+import com.example.finalproj_doctor.Model.Pojo.Postmsg_Response;
+import com.example.finalproj_doctor.Model.Post_msg;
 import com.example.finalproj_doctor.Network.Client;
 import com.example.finalproj_doctor.Pref.Doctor_pref;
 
@@ -19,6 +21,7 @@ public class Message_Repository {
 
     Doctor_pref doctor_pref;
     MutableLiveData<List<Message>> responsee = new MutableLiveData();
+    MutableLiveData<String> resp_post = new MutableLiveData<>();
 
     public void Get_conversation(Context context){
         doctor_pref = new Doctor_pref(context , "Data");
@@ -34,4 +37,25 @@ public class Message_Repository {
             }
         });
     }
+
+    public void Post_msg(Context context , Post_msg msg){
+        doctor_pref = new Doctor_pref(context , "Data");
+
+        Client.getInstance().retrofitApi.Post_msg(doctor_pref.get_Token() , msg).enqueue(new Callback<Postmsg_Response>() {
+            @Override
+            public void onResponse(Call<Postmsg_Response> call, Response<Postmsg_Response> response) {
+                if (response.isSuccessful()){
+                    resp_post.setValue("true");
+                }else {
+                    resp_post.setValue("false");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Postmsg_Response> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

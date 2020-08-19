@@ -4,11 +4,12 @@ import com.example.finalproj_doctor.Model.Login;
 import com.example.finalproj_doctor.Model.Pojo.Chat_pojo;
 import com.example.finalproj_doctor.Model.Pojo.Doctor_pojo;
 import com.example.finalproj_doctor.Model.Pojo.Message_Pojo;
+import com.example.finalproj_doctor.Model.Pojo.Postmsg_Response;
 import com.example.finalproj_doctor.Model.Pojo.Review_pojo;
 import com.example.finalproj_doctor.Model.Pojo.Scanqr_Pojo;
 import com.example.finalproj_doctor.Model.Pojo.Schedule_response;
-import com.example.finalproj_doctor.Model.Pojo.Socket;
 import com.example.finalproj_doctor.Model.Pojo.UserAppointment_pojo;
+import com.example.finalproj_doctor.Model.Post_msg;
 import com.example.finalproj_doctor.Model.Response_signup;
 import com.example.finalproj_doctor.Model.Schedule;
 import com.example.finalproj_doctor.Model.Schedule_update;
@@ -84,8 +85,7 @@ public interface RetrofitApi {
     @GET("api/v1/chats/5f2c3e9066da620004360971")
     Call<Message_Pojo> Get_conversation(@Header("Authorization:Bearer") String token);
 
-
-    @GET("api/v1/chats/5f2c3e9066da620004360971")
-    Call<Socket> get_con(@Header("Authorization:Bearer") String Token);
+    @POST("api/v1/chats/5f2c3e9066da620004360971/message")
+    Call<Postmsg_Response> Post_msg(@Header("Authorization:Bearer") String token , @Body Post_msg post_msg);
 
 }
