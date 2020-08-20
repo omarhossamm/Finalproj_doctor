@@ -63,15 +63,14 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
                 fragment = new Put_Appointment();
                 break;
 
-            case R.id.profile_nav:
-                fragment = new Doctor_profile();
-                break;
 
             case R.id.chat:
                 fragment = new Chat();
                 break;
 
-
+            case R.id.profile_nav:
+                fragment = new Doctor_profile();
+                break;
         }
 
         return loadfragment(fragment);
