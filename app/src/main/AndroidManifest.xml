@@ -37,9 +37,9 @@
         <activity android:name=".Ui.Chat.Chat"
             tools:ignore="Instantiatable" />
         <activity android:name=".Ui.Login.Login" />
-        <activity android:name=".Ui.Splash.Splash"/>
-        <activity android:name=".Ui.Message_chat.Message_chat">
 
+        <activity android:name=".Ui.Message_chat.Message_chat"/>
+            <activity android:name=".Ui.Splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

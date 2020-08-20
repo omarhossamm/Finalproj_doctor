@@ -82,10 +82,10 @@ public interface RetrofitApi {
     @GET("api/v1/chats")
     Call<Chat_pojo> Get_chats(@Header("Authorization:Bearer") String token);
 
-    @GET("api/v1/chats/5f2c3e9066da620004360971")
-    Call<Message_Pojo> Get_conversation(@Header("Authorization:Bearer") String token);
+    @GET("api/v1/chats/{room_id}")
+    Call<Message_Pojo> Get_conversation(@Header("Authorization:Bearer") String token , @Path("room_id") String room_id);
 
-    @POST("api/v1/chats/5f2c3e9066da620004360971/message")
-    Call<Postmsg_Response> Post_msg(@Header("Authorization:Bearer") String token , @Body Post_msg post_msg);
+    @POST("api/v1/chats/{room_id}/message")
+    Call<Postmsg_Response> Post_msg(@Header("Authorization:Bearer") String token , @Path("room_id") String room_id , @Body Post_msg post_msg);
 
 }

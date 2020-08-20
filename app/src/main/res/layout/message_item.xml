@@ -23,7 +23,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/user_text"
             android:padding="7dp"
-            android:text="asdasdasd"
+            android:text=""
             android:textColor="@android:color/background_dark"
             android:textSize="15sp" />
 

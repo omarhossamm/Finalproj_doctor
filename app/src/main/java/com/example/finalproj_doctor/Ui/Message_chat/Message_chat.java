@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,7 @@ public class Message_chat extends AppCompatActivity {
     Message_Viewmodel message_viewmodel;
     Message_Adapter message_adapter;
     Context context;
+    String room_id;
 
     private Socket mSocket;
     {
@@ -57,6 +59,9 @@ public class Message_chat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_chat);
+
+        Intent data = getIntent();
+        room_id = data.getStringExtra("room_id");
 
         doctor_pref = new Doctor_pref(getApplicationContext() , "Data");
         recyclerView = findViewById(R.id.recycler);
@@ -90,15 +95,15 @@ message.setText("");
             }
         });
 
-        message_viewmodel.Get_Conversation(getApplicationContext());
+        message_viewmodel.Get_Conversation(getApplicationContext() , room_id);
         recyclerView.setAdapter(message_adapter);
 
         
 
 
         onSocketConnect();
-        mSocket.emit("identity", "5f126b2e1f077e0004c0e955");
-        mSocket.emit("subscribe", "5f2c3e9066da620004360971");
+        mSocket.emit("identity", doctor_pref.getData().get_id());
+        mSocket.emit("subscribe", room_id);
 
 
         send_message.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +111,7 @@ message.setText("");
             public void onClick(View view) {
                 Post_msg post_msg = new Post_msg(message.getText().toString());
 
-                message_viewmodel.Post_msg(context = Message_chat.this , post_msg);
+                message_viewmodel.Post_msg(context = Message_chat.this , room_id , post_msg);
             }
         });
 
@@ -126,7 +131,7 @@ message.setText("");
                 @Override
                 public void run() {
 
-                   Client.getInstance().retrofitApi.Get_conversation(doctor_pref.get_Token()).enqueue(new Callback<Message_Pojo>() {
+                   Client.getInstance().retrofitApi.Get_conversation(doctor_pref.get_Token() , room_id).enqueue(new Callback<Message_Pojo>() {
                        @Override
                        public void onResponse(Call<Message_Pojo> call, Response<Message_Pojo> response) {
                            message_adapter.setList(response.body().getConversation());

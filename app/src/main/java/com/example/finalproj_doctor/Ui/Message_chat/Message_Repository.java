@@ -23,9 +23,9 @@ public class Message_Repository {
     MutableLiveData<List<Message>> responsee = new MutableLiveData();
     MutableLiveData<String> resp_post = new MutableLiveData<>();
 
-    public void Get_conversation(Context context){
+    public void Get_conversation(Context context , String room_id){
         doctor_pref = new Doctor_pref(context , "Data");
-        Client.getInstance().retrofitApi.Get_conversation(doctor_pref.get_Token()).enqueue(new Callback<Message_Pojo>() {
+        Client.getInstance().retrofitApi.Get_conversation(doctor_pref.get_Token() , room_id).enqueue(new Callback<Message_Pojo>() {
             @Override
             public void onResponse(Call<Message_Pojo> call, Response<Message_Pojo> response) {
                 responsee.setValue(response.body().getConversation());
@@ -38,10 +38,10 @@ public class Message_Repository {
         });
     }
 
-    public void Post_msg(Context context , Post_msg msg){
+    public void Post_msg(Context context , String room_id , Post_msg msg){
         doctor_pref = new Doctor_pref(context , "Data");
 
-        Client.getInstance().retrofitApi.Post_msg(doctor_pref.get_Token() , msg).enqueue(new Callback<Postmsg_Response>() {
+        Client.getInstance().retrofitApi.Post_msg(doctor_pref.get_Token() , room_id , msg).enqueue(new Callback<Postmsg_Response>() {
             @Override
             public void onResponse(Call<Postmsg_Response> call, Response<Postmsg_Response> response) {
                 if (response.isSuccessful()){

@@ -14,12 +14,12 @@ public class Message_Viewmodel extends ViewModel {
 
     Message_Repository message_repository = new Message_Repository();
 
-    public void Get_Conversation(Context context){
-        message_repository.Get_conversation(context);
+    public void Get_Conversation(Context context , String room_id){
+        message_repository.Get_conversation(context , room_id);
     }
 
-    public void Post_msg(Context context , Post_msg msg){
-        message_repository.Post_msg(context , msg);
+    public void Post_msg(Context context , String room_id , Post_msg msg){
+        message_repository.Post_msg(context , room_id , msg);
     }
 
     MutableLiveData<String> get_msgresp(){

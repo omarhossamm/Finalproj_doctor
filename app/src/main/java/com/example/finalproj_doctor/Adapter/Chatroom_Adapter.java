@@ -22,6 +22,7 @@ import com.example.finalproj_doctor.Model.Pojo.Chat_pojo;
 import com.example.finalproj_doctor.Model.RoomInfo;
 import com.example.finalproj_doctor.Model.User;
 import com.example.finalproj_doctor.R;
+import com.example.finalproj_doctor.Ui.Message_chat.Message_chat;
 import com.example.finalproj_doctor.Ui.Qr_Scan.Qr_Scan;
 import com.google.firebase.database.Transaction;
 import com.google.gson.Gson;
@@ -51,16 +52,26 @@ public class Chatroom_Adapter extends RecyclerView.Adapter<Chatroom_Adapter.hold
       holder.name.setText(arrayList.get(position).getRoomInfo().get(0).getLocal().getName());
       holder.message.setText(arrayList.get(position).getMessage());
 
+      holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Intent intent = new Intent(view.getContext() , Message_chat.class);
+              intent.putExtra("room_id" , arrayList.get(position).getChatRoomId().toString());
+              view.getContext().startActivity(intent);
+          }
+      });
 
 
     }
 
     public static class holderr extends RecyclerView.ViewHolder {
         TextView name , message;
+        LinearLayout linearLayout;
 
         public holderr(View itemView) {
             super(itemView);
 
+            linearLayout = itemView.findViewById(R.id.room_inf);
             name = itemView.findViewById(R.id.name);
             message = itemView.findViewById(R.id.message);
 
